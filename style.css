@@ -68,3 +68,8 @@ nav {
     color: #4da0c1;
     cursor: pointer;
   }
+
+  .time {
+    text-align: center;
+    font-size: 20px;
+  }
