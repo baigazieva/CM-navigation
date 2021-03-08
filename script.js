@@ -43,6 +43,7 @@ const data = {
         .join("");
       this.result.addEventListener("click", this.onClickCity);
       this.result.childNodes[0].click();
+      window.addEventListener("resize", this.moveSlider);
     };
     onClickCity = ({ target }) => {
       if (target.nodeName === "LI" && target !== this.activeTab) {
