@@ -53,7 +53,9 @@ const data = {
       // if clicked element is li and it's not already active li.
       if (target.nodeName === "LI" && target !== this.activeTab) {
         // remove previous active class
-        this.activeTab.classList.remove("active");
+        if (this.activeTab) {
+          this.activeTab.classList.remove("active");
+        }
         // set new active element
         this.activeTab = target;
         target.classList.add("active");
