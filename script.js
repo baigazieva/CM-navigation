@@ -34,17 +34,31 @@ const data = {
     constructor(cities) {
       this.cities = cities;
       this.slider = document.querySelector(".slider");
+      this.result = document.querySelector(".result");
       this.activeTab;
     }
     init = () => {
-      const result = document.querySelector(".result");
-      result.innerHTML = this.cities.map((city) => `<li>${city.label}</li>`).join("");
-      result.addEventListener("click", this.onClickCity);
+      this.result.innerHTML = this.cities
+        .map((city) => `<li>${city.label}</li>`)
+        .join("");
+      this.result.addEventListener("click", this.onClickCity);
+      this.result.childNodes[0].click();
     };
     onClickCity = ({ target }) => {
-     
+      if (target.nodeName === "LI" && target !== this.activeTab) {
+        if (this.activeTab) {
+          this.activeTab.classList.remove("active");
+        }
+        this.activeTab = target;
+        target.classList.add("active");
+        this.moveSlider();
+      }
     };
-   
+    moveSlider = () => {
+      const { offsetWidth, offsetLeft } = this.activeTab;
+      this.slider.style.width = `${offsetWidth}px`;
+      this.slider.style.marginLeft = `${offsetLeft}px`;
+    };
   }
   const cities = new Cities(data.cities);
   cities.init();
